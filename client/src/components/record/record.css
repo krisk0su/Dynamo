@@ -1,0 +1,32 @@
+.record {
+  width: 90%;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 0.1em solid black;
+  border-radius: 0.6em;
+  background: rgba(187, 224, 112, 0.5);
+  margin: 1em 0;
+}
+.record p {
+  color: red;
+  padding-top: 1em;
+}
+.record label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.record input[type="text"] {
+  width: 20em;
+  height: 1.7em;
+  padding: 0 0.5em;
+  background: white;
+  border: 1px solid black;
+  border-radius: 0.5em;
+  font-family: "Montserrat", sans-serif;
+}
+.record input[type="checkbox"] {
+  margin-left: 1em;
+}
