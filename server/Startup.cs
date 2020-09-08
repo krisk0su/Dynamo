@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.ActionFilters;
 using Api.Contracts;
 using Api.Services;
 using Microsoft.AspNetCore.Builder;
@@ -38,10 +39,12 @@ namespace Api
                                                   .AllowAnyMethod(); ;
                                   });
             });
-
+            services.AddTransient<IDataService, DataService>();
+            services.AddTransient<ValidationFilterDeleteAttribute>();
+            services.AddTransient<ValidationFilterEditAttribute>();
             services.AddControllers().AddNewtonsoftJson();
 
-            services.AddTransient<IDataService, DataService>();
+           
 
         }
 

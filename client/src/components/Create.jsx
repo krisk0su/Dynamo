@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import { recordContext } from "./Store";
+import { observer } from "mobx-react";
 import { useHistory } from "react-router-dom";
-export const Create = () => {
+export const Create = observer(() => {
   const store = useContext(recordContext);
   const history = useHistory();
   const [name, setName] = useState();
@@ -10,8 +11,17 @@ export const Create = () => {
     setName(value);
   };
   const onSubmit = async () => {
-    await store.Create({ name });
-    history.push("/");
+    if (name.length < 3) {
+      store.error = {
+        msg: "Minimum required length is 3 letters",
+      };
+    } else {
+      // store.error = {
+      //   msg: "",
+      // };
+      await store.Create({ name });
+      history.push("/");
+    }
   };
   return (
     <Form>
@@ -23,9 +33,10 @@ export const Create = () => {
         onChange={handleName}
         label="Movie Name"
       />
+      {store.error && <p>{store.error.msg}</p>}
       <Button onClick={onSubmit} type="submit">
         Submit
       </Button>
     </Form>
   );
-};
+});

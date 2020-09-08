@@ -6,7 +6,6 @@ import { recordContext } from "../Store";
 export const MassEdit = observer(() => {
   const store = useContext(recordContext);
   const [isOpen, setIsOpen] = useState(false);
-
   const onYes = async () => {
     await store.massEdit();
     window.location.reload(false);
@@ -19,7 +18,10 @@ export const MassEdit = observer(() => {
 
   return (
     <div>
-      <Button disabled={store.areSelected()} onClick={() => setIsOpen(!isOpen)}>
+      <Button
+        disabled={store.areSelected() || store.hasError}
+        onClick={() => setIsOpen(!isOpen)}
+      >
         Mass Edit
       </Button>
       <Confirm

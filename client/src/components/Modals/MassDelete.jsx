@@ -9,7 +9,7 @@ export const MassDelete = observer(() => {
 
   const onYes = async () => {
     await store.massDelete();
-    // window.location.reload(false);
+    //window.location.reload(false);
     setIsOpen(false);
   };
 

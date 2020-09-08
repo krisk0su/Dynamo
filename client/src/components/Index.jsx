@@ -18,7 +18,6 @@ export const Index = observer(() => {
   const onCreate = () => {
     history.push("/create");
   };
-
   const recs = useCallback(() => {
     return store.records.map((record) => (
       <Record key={record.id} record={record} />
@@ -28,6 +27,7 @@ export const Index = observer(() => {
   return (
     <div className="wrapper">
       <div className="mass-buttons">
+        <button onClick={onCreate}>Create entity</button>
         <MassEdit />
         <MassDelete />
       </div>

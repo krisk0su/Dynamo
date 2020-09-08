@@ -96,7 +96,16 @@
         public List<EntityModel> Create(EntityModel record)
         {
             //find biggest id
-            int index = this.entities.Select(ent => ent.id).Max();
+            var indexes = this.entities.Select(ent => ent.id);
+            int index;
+            if (indexes.Count() == 0) {
+                index = 0;
+            }
+            else
+            {
+                index = indexes.Max();
+            }
+                
             EntityModel newRecord = new EntityModel()
             {
                 id = index + 1,

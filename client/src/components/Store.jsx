@@ -47,6 +47,9 @@ export class Store {
     if (this.selectedRecords.length > 1) return false;
     return true;
   }
+  get hasError() {
+    return this.error?.msg == "" ? false : true;
+  }
 }
 decorate(Store, {
   records: observable,
@@ -59,5 +62,6 @@ decorate(Store, {
   tick: action,
   rerender: observable,
   error: observable,
+  hasError: computed,
 });
 export const recordContext = createContext(new Store());

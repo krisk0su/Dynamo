@@ -6,6 +6,7 @@
     using Api.Models;
     using Api.Contracts;
     using System;
+    using Api.ActionFilters;
 
     [ApiController]
     [Route("[controller]")]
@@ -35,9 +36,10 @@
 
         [HttpPatch]
         [Route("PatchOne")]
-        public ActionResult<List<EntityModel>> PatchOne(EntityModel model)
+        [ServiceFilter(typeof(ValidationFilterEditAttribute))]
+        public ActionResult<List<EntityModel>> PatchOne(EntityModel record)
         {
-            return Ok(this._dataService.UpdateEntity(model));
+            return Ok(this._dataService.UpdateEntity(record));
         }
 
         [HttpPatch]
@@ -49,6 +51,7 @@
 
         [HttpDelete("{id}")]
         [Route("delete")]
+        [ServiceFilter(typeof(ValidationFilterDeleteAttribute))]
         public ActionResult<List<EntityModel>> DeleteOne(int id)
         {
             return Ok(this._dataService.DeleteEntity(id));
